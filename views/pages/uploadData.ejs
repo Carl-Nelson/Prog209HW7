@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+<main>
+  <div class="jumbotron rounded-sm">
+      <h2>Here are your videogames</h2>
+
+      <%if (dataArray != null) { %>
+       
+        <ul class="list-group">
+            <% for(var i=0; i<dataArray.length; i++) {%>
+              <li class="list-group-item"><%= "Title:  " + dataArray[i].id + " Date: " + dataArray[i].date + " Rating: " + dataArray[i].rating %></li>
+            <% } %>
+          </ul>
+
+
+        <% } %>
+
+     
+
+     
+      </br>
+      <label for="movie">Add New Game</label>
+      <input class="form-control" type="text" id="movie" name="movie"><br>
+      <label for="date">Year Released</label>
+      <input class="form-control" type="text" id="date" name="date"><br>
+      <label for="rating">Your Rating</label>
+      <input type="number" class="form-control" id="rating" name="rating" min="1" max="5"><br>
+      <button class="btn btn-primary  " onclick="updateURL();">Add another game </button>
+
+  </div>
+</main>
+
+<footer>
+  <% include ../partials/footer %>
+</footer>
+<script type="text/javascript">
+// our menu calls this page URL with no ?id= value,
+// so code needs to check for that
+// when user enters data, I append the data using the required ?id=
+
+  function updateURL() {
+    // http://localhost:3000/uploadData?id=Terminator&date=1946
+    var myURL = (document.location).toString();
+    var n = myURL.indexOf("?");
+    myURL = myURL.substr(0, n); 
+    document.location = myURL + "?id=" + document.getElementById("movie").value + 
+    "&date=" +  document.getElementById("date").value + "&rating=" + document.getElementById("rating").value;
+
+  }
+</script>
+
+</body>
+</html>

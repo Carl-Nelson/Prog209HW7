@@ -1,0 +1,33 @@
+<!-- views/pages/about.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>ALl the games!</h1>
+        <%if (dataArray != null) { %>
+       
+            <ul class="list-group">
+                <% for(var i=0; i<dataArray.length; i++) {%>
+                  <li class="list-group-item"><%= "Title:  " + dataArray[i].id + " Date: " + dataArray[i].date + " Rating: " + dataArray[i].rating %></li>
+                <% } %>
+              </ul>
+    
+            <% } %>
+    </div>
+</main>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+    
+    </body>
+    </html>
